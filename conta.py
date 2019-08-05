@@ -10,9 +10,16 @@ class Conta:
 
     def deposita(self, valor):
         self.__saldo += valor
+
+    def __saque_valido(self, valor_a_sacar):
+        valor_disponivel = self.__limite + self.__saldo
+        return (valor_a_sacar <= valor_disponivel)
     
     def saca(self, valor):
-        self.__saldo -= valor
+        if self.__saque_valido(valor):
+            self.__saldo -= valor
+        else:
+            print('Saque inválido')
 
     def extrato(self):
         print(f"Saldo do titular {self.__titular} é de {self.__saldo}")
@@ -37,3 +44,11 @@ class Conta:
     def limite(self, limite):
         self.__limite = limite
 
+    @staticmethod
+    def codigos_bancos(self):
+        return {
+            'BB': '001',
+            'Caixa': '104',
+            'Bradesco': '237'
+        }
+    
